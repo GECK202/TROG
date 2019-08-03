@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Trog" />
+		<Option makefile="$(CODEBLOCKS)/../sgdk140/makefile.gen" />
+		<Option makefile_is_custom="1" />
+		<Option execution_dir="$(PROJECT_DIR)" />
+		<Option pch_mode="2" />
+		<Option compiler="smd_compiller" />
+		<Option extended_obj_names="1" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/HelloWord" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="smd_compiller" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<ExtraCommands>
+					<Add after="$(#smd.run_cur_emul) $(#smd.rom)" />
+					<Mode after="always" />
+				</ExtraCommands>
+			</Target>
+			<Target title="default">
+				<Option output="out/HelloWord" prefix_auto="1" extension_auto="1" />
+				<Option object_output="out/" />
+				<Option type="1" />
+				<Option compiler="smd_compiller" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="$(#smd.run_cur_emul) $(#smd.rom)" />
+					<Mode after="always" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<ExtraCommands>
+			<Add after='$(#sys.backup) $(PROJECT_DIR) $(PROJECT_DIR)..\.builds\ $(PROJECT_NAME) &quot;defs.h&quot; &quot;GAME_VERSION&quot; &quot;GAME_BUILD&quot;' />
+		</ExtraCommands>
+		<Unit filename="res/image/autors.bmp" />
+		<Unit filename="res/image/font_rus.bmp" />
+		<Unit filename="res/libfont.h" />
+		<Unit filename="res/libfont.res" />
+		<Unit filename="src/game.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/main.h" />
+		<Unit filename="src/menu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/show_intro.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
