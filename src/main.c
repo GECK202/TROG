@@ -7,8 +7,8 @@ int		main()
 	reset_score();
 	while (TRUE)
 	{
-		show_intro();
-		menu();
+		//show_intro();
+		//menu();
 		game();
 		set_score();
 	}
