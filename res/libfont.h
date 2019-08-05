@@ -3,6 +3,7 @@
 
 extern const Palette font_pal_my;
 extern const TileSet font_my;
+extern const SpriteDefinition hero_sprite;
 extern const Image logo_img;
 extern const Image autor_img;
 extern const Image pole1_img;

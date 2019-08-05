@@ -1,5 +1,11 @@
 #include "main.h"
 
+//#define show_logo(); \
+	VDP_drawImage(PLAN_B, &logo_img, 0, 0); \
+	joy_state = JOY_waitPressTime(JOY_1, BUTTON_DIR | BUTTON_A, 5000); \
+	if (joy_state) \
+		break ;
+
 char	show_logo(void);		///show logo, return TRUE if down any key
 char	show_about(void);		///show about, return TRUE if down any key
 char	show_score(void);		///show score table, return TRUE if down any key
@@ -8,11 +14,14 @@ void	reset_score(void);		///reset current score and set score table to default
 
 void    show_intro(void)
 {
-	//JOY_reset();
+	///u16	joy_state;
+
 	JOY_init();
-	///JOY_reset();
 	while (TRUE)
 	{
+		///joy_state = 0;
+		///show_logo();
+		///if (show_about() || show_score())
 		if (show_logo() || show_about() || show_score())
 			break ;
 	}
@@ -28,6 +37,7 @@ void    show_intro(void)
 	//SYS_enableInts();
 //}
 
+///*
 char	show_logo(void)
 {
 	///need to make
@@ -35,11 +45,12 @@ char	show_logo(void)
 
 	VDP_drawImage(PLAN_B, &logo_img, 0, 0);
 	joy_state = 0;
-	joy_state = JOY_waitPressTime(JOY_1, BUTTON_DIR | BUTTON_A, 5000);
+	joy_state = JOY_waitPressTime(JOY_1, BUTTON_START, 5000);
 	if (joy_state)
 		return (TRUE);
 	return (FALSE);
 }
+///*/
 
 char	show_about(void)
 {
@@ -47,7 +58,7 @@ char	show_about(void)
 
 	VDP_drawImage(PLAN_B, &autor_img, 0, 0);
 	joy_state = 0;
-	joy_state = JOY_waitPressTime(JOY_1, BUTTON_DIR | BUTTON_A, 5000);
+	joy_state = JOY_waitPressTime(JOY_1, BUTTON_START, 5000);
 	if (joy_state)
 		return (TRUE);
 	return (FALSE);
@@ -60,7 +71,7 @@ char	show_score(void)
 
 	VDP_drawImage(PLAN_B, &score_img, 0, 0);
 	joy_state = 0;
-	joy_state = JOY_waitPressTime(JOY_1, BUTTON_DIR | BUTTON_A, 5000);
+	joy_state = JOY_waitPressTime(JOY_1, BUTTON_START, 5000);
 	if (joy_state)
 		return (TRUE);
 	return (FALSE);
