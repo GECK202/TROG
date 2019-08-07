@@ -8,23 +8,52 @@
 # include "libfont.h"
 
 ///structure for save score
-typedef struct	s_score
+typedef struct
 {
 	char		name[3];
 	u32			score;
 }				t_score;
 
+//enum pl_status
+//{
+//	protect, ready, die
+//};
+
 ///structure for player
-typedef struct	s_player
+typedef struct
 {
+	Vect2D_s16	pos;
+	Vect2D_s16	direct;
 	t_score		score;
+	Sprite		*sprite;
+	const u16	*palette;
+	u16			num_pal;
+	s16			cur_anim;
+//	pl_status	status;
 }				t_player;
 
+//enum en_status
+//{
+//	ready, freezy, stay
+//};
+
+typedef struct
+{
+	Vect2D_s16	pos;
+	Vect2D_s16	direct;
+	u8			type;
+	Sprite		*sprite;
+	const u16	*palette;
+	u16			num_pal;
+//	en_status	status;
+}				t_enemy;
+
 ///global game structure
-typedef struct	s_game
+typedef struct
 {
 	t_player	player1;
 	t_player	player2;
+	t_enemy		*enemies;
 	t_score		score_table[5];
 }				t_game;
 

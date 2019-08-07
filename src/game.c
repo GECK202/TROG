@@ -2,9 +2,6 @@
 
 void	dummy(void);
 
-Sprite *sprite1;
-Sprite *sprite2;
-
 void    game(void)
 {
 	dummy();
@@ -14,19 +11,19 @@ void	dummy(void)
 {
 	u16	joy_state;
 	u16 palette[64];
-	s16 posx;
-	s16 posy;
-	s16 dx;
-	s16 dy;
-	s16 cur_anim;
+	//s16 posx;
+	//s16 posy;
+	//s16 dx;
+	//s16 dy;
+	//s16 cur_anim;
 	//JOY_reset();
 	SPR_init();
 	//VDP_setPaletteColors(0, (u16*) palette_black, 64);
 
 	VDP_drawImage(PLAN_B, &pole1_img, 0, 0);
 
-	sprite1 = SPR_addSprite(&hero_sprite, fix32ToInt(0), fix32ToInt(0), TILE_ATTR(PAL1, FALSE, FALSE, FALSE));
-	sprite2 = SPR_addSprite(&hero_sprite, fix32ToInt(0), fix32ToInt(0), TILE_ATTR(PAL1, FALSE, FALSE, FALSE));
+	g_game.player1.sprite = SPR_addSprite(&hero_sprite, fix32ToInt(0), fix32ToInt(0), TILE_ATTR(PAL1, FALSE, FALSE, FALSE));
+	g_game.player2.sprite = SPR_addSprite(&hero_sprite, fix32ToInt(0), fix32ToInt(0), TILE_ATTR(PAL1, FALSE, FALSE, FALSE));
 	SPR_update();
 
 	VDP_setPalette(PAL1, hero_sprite.palette->data);
@@ -47,31 +44,31 @@ void	dummy(void)
 	JOY_init();
 
 	joy_state = 0;
-	posx = 16;
-	posy = 24;
-	cur_anim = 1;
+	g_game.player1.pos.x = 16;
+	g_game.player1.pos.y = 24;
+	g_game.player1.cur_anim = 1;
 	//SPR_setFrame(sprite, 0);
-	sprite1->timer = 1;
-	sprite2->timer = 1;
-	SPR_setVisibility(sprite1, AUTO_SLOW);
-	SPR_setVisibility(sprite2, AUTO_SLOW);
+	g_game.player1.sprite->timer = 1;
+	g_game.player2.sprite->timer = 1;
+	SPR_setVisibility(g_game.player1.sprite, AUTO_SLOW);
+	SPR_setVisibility(g_game.player2.sprite, AUTO_SLOW);
 
-	SPR_setAnim(sprite2, 7);
-	SPR_setFrame(sprite2, 5);
-	SPR_setPosition(sprite2, 100, 100);
+	SPR_setAnim(g_game.player2.sprite, 14);
+	//SPR_setFrame(g_game.player2.sprite, 5);
+	SPR_setPosition(g_game.player2.sprite, 100, 100);
 
 	SPR_update();
 	while (joy_state != BUTTON_MODE)
 	{
 
-		dx = 0;
-		dy = 0;
-		SPR_setPosition(sprite1, posx, posy);
+		g_game.player1.direct.x = 0;
+		g_game.player1.direct.y = 0;
+		SPR_setPosition(g_game.player1.sprite, g_game.player1.pos.x, g_game.player1.pos.y);
 		//SPR_setFrame(sprite2, 5);
 		print("Anim=", hero_sprite.numAnimation, 32, 1);
-		print("X=", posx, 32, 3);
-		print("Y=", posy, 32, 4);
-		print("C_An=",hero_sprite.animations[cur_anim]->numFrame, 32, 2);
+		print("X=", g_game.player1.pos.x, 32, 3);
+		print("Y=", g_game.player1.pos.y, 32, 4);
+		print("C_An=",hero_sprite.animations[g_game.player1.cur_anim]->numFrame, 32, 2);
 
 		SPR_update();
         VDP_waitVSync();
@@ -81,33 +78,33 @@ void	dummy(void)
 		joy_state = JOY_readJoypad(JOY_ALL);
 
 
-		if (((joy_state & BUTTON_UP) == BUTTON_UP) && (posy > 24))
+		if (((joy_state & BUTTON_UP) == BUTTON_UP) && (g_game.player1.pos.y > 24))
 		{
-			SPR_setHFlip(sprite1, FALSE);
-			cur_anim = 0;
-			dy = -1;
+			SPR_setHFlip(g_game.player1.sprite, FALSE);
+			g_game.player1.cur_anim = 0;
+			g_game.player1.direct.y = -1;
 		}
-		else if (((joy_state & BUTTON_DOWN) == BUTTON_DOWN) && (posy < 200))
+		else if (((joy_state & BUTTON_DOWN) == BUTTON_DOWN) && (g_game.player1.pos.y < 200))
 		{
-			SPR_setHFlip(sprite1, FALSE);
-			cur_anim = 1;
-			dy = 1;
+			SPR_setHFlip(g_game.player1.sprite, FALSE);
+			g_game.player1.cur_anim = 1;
+			g_game.player1.direct.y = 1;
 		}
-		if (((joy_state & BUTTON_LEFT) == BUTTON_LEFT) && (posx > 0))
+		if (((joy_state & BUTTON_LEFT) == BUTTON_LEFT) && (g_game.player1.pos.x > 0))
 		{
-			SPR_setHFlip(sprite1, TRUE);
-			cur_anim = 2;
-			dx = -1;
+			SPR_setHFlip(g_game.player1.sprite, TRUE);
+			g_game.player1.cur_anim = 2;
+			g_game.player1.direct.x = -1;
 		}
-		else if (((joy_state & BUTTON_RIGHT) == BUTTON_RIGHT) && (posx < 240))
+		else if (((joy_state & BUTTON_RIGHT) == BUTTON_RIGHT) && (g_game.player1.pos.x < 240))
 		{
-			SPR_setHFlip(sprite1, FALSE);
-			cur_anim = 2;
-			dx = 1;
+			SPR_setHFlip(g_game.player1.sprite, FALSE);
+			g_game.player1.cur_anim = 2;
+			g_game.player1.direct.x = 1;
 		}
-		SPR_setAnim(sprite1, cur_anim);
-		posx += dx;
-		posy += dy;
+		SPR_setAnim(g_game.player1.sprite, g_game.player1.cur_anim);
+		g_game.player1.pos.x += g_game.player1.direct.x;
+		g_game.player1.pos.y += g_game.player1.direct.y;
 
 
 	}
