@@ -46,10 +46,155 @@
 		<ExtraCommands>
 			<Add after='$(#sys.backup) $(PROJECT_DIR) $(PROJECT_DIR)..\.builds\ $(PROJECT_NAME) &quot;defs.h&quot; &quot;GAME_VERSION&quot; &quot;GAME_BUILD&quot;' />
 		</ExtraCommands>
+		<Unit filename="../../../devkit/sgdk140/inc/asm.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/bmp.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/config.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/dma.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/everdrive.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/fat16.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/font.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/genesis.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/joy.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/kdebug.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/maths.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/maths3D.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/memory.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/pal.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/psg.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/smp_null.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/smp_null_pcm.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/sound.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/sprite_eng.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/sram.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/string.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/sys.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/tab_cnv.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/tab_vol.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/timer.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/tools.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/types.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/vdp.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/vdp_bg.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/vdp_dma.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/vdp_pal.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/vdp_spr.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/vdp_tile.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/vram.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/xgm.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/ym2612.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/z80_ctrl.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/z80_mvsc.h" />
+		<Unit filename="../../../devkit/sgdk140/inc/z80_vgm.h" />
+		<Unit filename="../../../devkit/sgdk140/src/bmp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/dma.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/everdrive.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/fat16.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/joy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/maths.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/maths3D.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/memory.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/pal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/psg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/sound.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/sprite_eng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/sram.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/string.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/sys.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/tab_cnv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/tab_log10.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/tab_log2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/tab_sin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/tab_sqrt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/tab_vol.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/tools.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/types.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/vdp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/vdp_bg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/vdp_dma.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/vdp_pal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/vdp_spr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/vdp_tile.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/vram.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/xgm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/ym2612.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../devkit/sgdk140/src/z80_ctrl.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="res/image/autors.bmp" />
 		<Unit filename="res/image/font_rus.bmp" />
 		<Unit filename="res/libfont.h" />
 		<Unit filename="res/libfont.res" />
+		<Unit filename="src/create_player.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/enemy.h" />
 		<Unit filename="src/game.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -60,7 +205,18 @@
 		<Unit filename="src/menu.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/player.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/player.h" />
 		<Unit filename="src/show_intro.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/sprite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/sprite.h" />
+		<Unit filename="src/tools.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>

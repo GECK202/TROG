@@ -1,17 +1,14 @@
 #include "main.h"
 
-//#define show_logo(); \
-	VDP_drawImage(PLAN_B, &logo_img, 0, 0); \
-	joy_state = JOY_waitPressTime(JOY_1, BUTTON_DIR | BUTTON_A, 5000); \
-	if (joy_state) \
-		break ;
 
-char	show_logo(void);		///show logo, return TRUE if down any key
-char	show_about(void);		///show about, return TRUE if down any key
-char	show_score(void);		///show score table, return TRUE if down any key
-void	set_score(void);		///set score to score table
-void	reset_score(void);		///reset current score and set score table to default
 
+char	show_logo(void);		///показывает логотип, возвращает TRUE если нажата кнопка СТАРТ
+char	show_about(void);		///показывает анимационную заставку и инфо об издателе, возвращает TRUE если нажата кнопка СТАРТ
+char	show_score(void);		///показывает анимированную таблицу лидеров, возвращает TRUE если нажата кнопка СТАРТ
+void	set_score(void);		///функция установки нового значения в таблицу лидеров
+void	reset_score(void);		///функция установки начальных значений таблицы лидеров
+
+///функция сменяет и показывает заставки перед началом игры
 void    show_intro(void)
 {
 	///u16	joy_state;
@@ -19,9 +16,6 @@ void    show_intro(void)
 	JOY_init();
 	while (TRUE)
 	{
-		///joy_state = 0;
-		///show_logo();
-		///if (show_about() || show_score())
 		if (show_logo() || show_about() || show_score())
 			break ;
 	}
@@ -29,13 +23,6 @@ void    show_intro(void)
 	VDP_clearPlan(PLAN_B, TRUE);
 	VDP_clearPlan(PLAN_WINDOW, TRUE);
 }
-
-//void	reset_vdp(void)
-//{
-//	SYS_disableInts();
-//	VDP_setPaletteColors(0, (u16*) palette_black, 64);
-	//SYS_enableInts();
-//}
 
 ///*
 char	show_logo(void)

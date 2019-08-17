@@ -1,6 +1,6 @@
 #include "main.h"
 
-t_game	g_game;			///global game data
+t_game	g_game;			///глобальный объект
 
 int		main()
 {

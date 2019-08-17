@@ -1,8 +1,8 @@
 #include "main.h"
 
-void	dummy_menu(void);
+void	dummy_menu(void);///функция заглушка вместо функции меню(для продолжения нажать А или В)
 
-///select level
+///функция отображения и выбора уровня сложности
 void	menu(void)
 {
 	dummy_menu();
