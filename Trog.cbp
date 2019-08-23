@@ -202,6 +202,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/main.h" />
+		<Unit filename="src/map.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/map.h" />
 		<Unit filename="src/menu.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -6,12 +6,23 @@ void	player_sprite_free(t_sprite *sprite);///удаление спрайта
 ///создание игрока1
 void	create_player1(void)
 {
-	g_game.player1.pos.x = 1;
-	g_game.player1.pos.y = 48;
+	g_game.player1.object.pos.x = 55;
+	g_game.player1.object.pos.y = 150;
 	g_game.player1.state = ps_go_down;
-	g_game.player1.event = pe_to_down;
-	g_game.player1.delay_frame = 20;
-	player_sprite_create(&g_game.player1, &hero_sprite, TILE_USERINDEX, PAL1);
+	g_game.player1.intent = pi_to_down;
+	g_game.player1.delay_frame = 6;
+	player_sprite_create(&g_game.player1, &hero_sprite, TILE_USERINDEX+150, PAL3);
+}
+
+///создание игрока1
+void	create_player2(void)
+{
+	g_game.player2.object.pos.x = 24;
+	g_game.player2.object.pos.y = 54;
+	g_game.player2.state = ps_go_down;
+	g_game.player2.intent = pi_to_down;
+	g_game.player2.delay_frame = 5;
+	player_sprite_create(&g_game.player2, &hero_sprite, TILE_USERINDEX+156, PAL3);
 }
 
 ///очистка игрока1
@@ -24,8 +35,10 @@ void	player_sprite_create(t_player *player, SpriteDefinition *sprite_def, u16 ti
 {
 	t_sprite *sprite;
 	player->sprite = MEM_alloc(sizeof(t_sprite));
-	sprite = player->sprite;
 
+	sprite = player->sprite;
+	sprite->index = g_game.objects_count;
+	add_object_to_list(&player->object);
 	sprite->sprite_def = sprite_def;
 	//print("F NUM=", sprite->sprite_def->animations[0]->frames[0]->, 32, 1, 2);
 	sprite->anims_count = 5;
@@ -48,30 +61,30 @@ void	player_sprite_create(t_player *player, SpriteDefinition *sprite_def, u16 ti
 	sprite->anim[0].frame = MEM_alloc(4 * sizeof(t_frame));
 		sprite->anim[0].frame[0].anim_index = 0;
 		sprite->anim[0].frame[0].frame_index = 0;
-		sprite->anim[0].frame[0].delta_pos.x = 0;
+		sprite->anim[0].frame[0].delta_pos.x = -1;
 		sprite->anim[0].frame[0].delta_pos.y = 0;
-		sprite->anim[0].frame[0].delay = 0;
+		sprite->anim[0].frame[0].delay = 1;
 		sprite->anim[0].frame[0].h_flip = 0;
 
 		sprite->anim[0].frame[1].anim_index = 0;
 		sprite->anim[0].frame[1].frame_index = 1;
-		sprite->anim[0].frame[1].delta_pos.x = 0;
+		sprite->anim[0].frame[1].delta_pos.x = -1;
 		sprite->anim[0].frame[1].delta_pos.y = 0;
-		sprite->anim[0].frame[1].delay = 0;
+		sprite->anim[0].frame[1].delay = 1;
 		sprite->anim[0].frame[1].h_flip = 0;
 
 		sprite->anim[0].frame[2].anim_index = 0;
 		sprite->anim[0].frame[2].frame_index = 0;
-		sprite->anim[0].frame[2].delta_pos.x = 0;
+		sprite->anim[0].frame[2].delta_pos.x = -1;
 		sprite->anim[0].frame[2].delta_pos.y = 0;
-		sprite->anim[0].frame[2].delay = 0;
+		sprite->anim[0].frame[2].delay = 1;
 		sprite->anim[0].frame[2].h_flip = 0;
 
 		sprite->anim[0].frame[3].anim_index = 0;
 		sprite->anim[0].frame[3].frame_index = 1;
-		sprite->anim[0].frame[3].delta_pos.x = 0;
+		sprite->anim[0].frame[3].delta_pos.x = 1;
 		sprite->anim[0].frame[3].delta_pos.y = 0;
-		sprite->anim[0].frame[3].delay = 0;
+		sprite->anim[0].frame[3].delay = 1;
 		sprite->anim[0].frame[3].h_flip = 1;
 
 	///walk to down
@@ -81,28 +94,28 @@ void	player_sprite_create(t_player *player, SpriteDefinition *sprite_def, u16 ti
 		sprite->anim[1].frame[0].frame_index = 0;
 		sprite->anim[1].frame[0].delta_pos.x = 0;
 		sprite->anim[1].frame[0].delta_pos.y = 0;
-		sprite->anim[1].frame[0].delay = 0;
+		sprite->anim[1].frame[0].delay = 1;
 		sprite->anim[1].frame[0].h_flip = 0;
 
 		sprite->anim[1].frame[1].anim_index = 1;
 		sprite->anim[1].frame[1].frame_index = 1;
-		sprite->anim[1].frame[1].delta_pos.x = 0;
+		sprite->anim[1].frame[1].delta_pos.x = 1;
 		sprite->anim[1].frame[1].delta_pos.y = 0;
-		sprite->anim[1].frame[1].delay = 0;
+		sprite->anim[1].frame[1].delay = 1;
 		sprite->anim[1].frame[1].h_flip = 0;
 
 		sprite->anim[1].frame[2].anim_index = 1;
 		sprite->anim[1].frame[2].frame_index = 0;
 		sprite->anim[1].frame[2].delta_pos.x = 0;
 		sprite->anim[1].frame[2].delta_pos.y = 0;
-		sprite->anim[1].frame[2].delay = 0;
+		sprite->anim[1].frame[2].delay = 1;
 		sprite->anim[1].frame[2].h_flip = 0;
 
 		sprite->anim[1].frame[3].anim_index = 1;
 		sprite->anim[1].frame[3].frame_index = 1;
-		sprite->anim[1].frame[3].delta_pos.x = 0;
+		sprite->anim[1].frame[3].delta_pos.x = -1;
 		sprite->anim[1].frame[3].delta_pos.y = 0;
-		sprite->anim[1].frame[3].delay = 0;
+		sprite->anim[1].frame[3].delay = 1;
 		sprite->anim[1].frame[3].h_flip = 1;
 
 	///walk to right
@@ -112,28 +125,28 @@ void	player_sprite_create(t_player *player, SpriteDefinition *sprite_def, u16 ti
 		sprite->anim[2].frame[0].frame_index = 0;
 		sprite->anim[2].frame[0].delta_pos.x = 0;
 		sprite->anim[2].frame[0].delta_pos.y = 0;
-		sprite->anim[2].frame[0].delay = 0;
+		sprite->anim[2].frame[0].delay = 1;
 		sprite->anim[2].frame[0].h_flip = 0;
 
 		sprite->anim[2].frame[1].anim_index = 2;
 		sprite->anim[2].frame[1].frame_index = 1;
 		sprite->anim[2].frame[1].delta_pos.x = 0;
 		sprite->anim[2].frame[1].delta_pos.y = 0;
-		sprite->anim[2].frame[1].delay = 0;
+		sprite->anim[2].frame[1].delay = 1;
 		sprite->anim[2].frame[1].h_flip = 0;
 
 		sprite->anim[2].frame[2].anim_index = 2;
 		sprite->anim[2].frame[2].frame_index = 0;
 		sprite->anim[2].frame[2].delta_pos.x = 0;
 		sprite->anim[2].frame[2].delta_pos.y = 0;
-		sprite->anim[2].frame[2].delay = 0;
+		sprite->anim[2].frame[2].delay = 1;
 		sprite->anim[2].frame[2].h_flip = 0;
 
 		sprite->anim[2].frame[3].anim_index = 2;
 		sprite->anim[2].frame[3].frame_index = 2;
 		sprite->anim[2].frame[3].delta_pos.x = 0;
 		sprite->anim[2].frame[3].delta_pos.y = 0;
-		sprite->anim[2].frame[3].delay = 0;
+		sprite->anim[2].frame[3].delay = 1;
 		sprite->anim[2].frame[3].h_flip = 0;
 
 	///turn from back
@@ -143,14 +156,14 @@ void	player_sprite_create(t_player *player, SpriteDefinition *sprite_def, u16 ti
 		sprite->anim[3].frame[0].frame_index = 0;
 		sprite->anim[3].frame[0].delta_pos.x = 0;
 		sprite->anim[3].frame[0].delta_pos.y = 0;
-		sprite->anim[3].frame[0].delay = 0;
+		sprite->anim[3].frame[0].delay = 1;
 		sprite->anim[3].frame[0].h_flip = 0;
 
 		sprite->anim[3].frame[1].anim_index = 3;
 		sprite->anim[3].frame[1].frame_index = 1;
 		sprite->anim[3].frame[1].delta_pos.x = 0;
 		sprite->anim[3].frame[1].delta_pos.y = 0;
-		sprite->anim[3].frame[1].delay = 0;
+		sprite->anim[3].frame[1].delay = 1;
 		sprite->anim[3].frame[1].h_flip = 0;
 
 	///turn to back
@@ -161,14 +174,14 @@ void	player_sprite_create(t_player *player, SpriteDefinition *sprite_def, u16 ti
 		sprite->anim[4].frame[0].frame_index = 1;
 		sprite->anim[4].frame[0].delta_pos.x = 0;
 		sprite->anim[4].frame[0].delta_pos.y = 0;
-		sprite->anim[4].frame[0].delay = 0;
+		sprite->anim[4].frame[0].delay = 1;
 		sprite->anim[4].frame[0].h_flip = 0;
 
 		sprite->anim[4].frame[1].anim_index = 3;
 		sprite->anim[4].frame[1].frame_index = 0;
 		sprite->anim[4].frame[1].delta_pos.x = 0;
 		sprite->anim[4].frame[1].delta_pos.y = 0;
-		sprite->anim[4].frame[1].delay = 0;
+		sprite->anim[4].frame[1].delay = 1;
 		sprite->anim[4].frame[1].h_flip = 0;
 
 	///turn from front
@@ -178,14 +191,14 @@ void	player_sprite_create(t_player *player, SpriteDefinition *sprite_def, u16 ti
 		sprite->anim[5].frame[0].frame_index = 0;
 		sprite->anim[5].frame[0].delta_pos.x = 0;
 		sprite->anim[5].frame[0].delta_pos.y = 0;
-		sprite->anim[5].frame[0].delay = 0;
+		sprite->anim[5].frame[0].delay = 1;
 		sprite->anim[5].frame[0].h_flip = 0;
 
 		sprite->anim[5].frame[1].anim_index = 4;
 		sprite->anim[5].frame[1].frame_index = 1;
 		sprite->anim[5].frame[1].delta_pos.x = 0;
 		sprite->anim[5].frame[1].delta_pos.y = 0;
-		sprite->anim[5].frame[1].delay = 0;
+		sprite->anim[5].frame[1].delay = 1;
 		sprite->anim[5].frame[1].h_flip = 0;
 
 	///turn to front
@@ -195,14 +208,14 @@ void	player_sprite_create(t_player *player, SpriteDefinition *sprite_def, u16 ti
 		sprite->anim[6].frame[0].frame_index = 1;
 		sprite->anim[6].frame[0].delta_pos.x = 0;
 		sprite->anim[6].frame[0].delta_pos.y = 0;
-		sprite->anim[6].frame[0].delay = 0;
+		sprite->anim[6].frame[0].delay = 1;
 		sprite->anim[6].frame[0].h_flip = 0;
 
 		sprite->anim[6].frame[1].anim_index = 4;
 		sprite->anim[6].frame[1].frame_index = 0;
 		sprite->anim[6].frame[1].delta_pos.x = 0;
 		sprite->anim[6].frame[1].delta_pos.y = 0;
-		sprite->anim[6].frame[1].delay = 0;
+		sprite->anim[6].frame[1].delay = 1;
 		sprite->anim[6].frame[1].h_flip = 0;
 
 	///fall from back
@@ -212,84 +225,84 @@ void	player_sprite_create(t_player *player, SpriteDefinition *sprite_def, u16 ti
 		sprite->anim[7].frame[0].frame_index = 0;
 		sprite->anim[7].frame[0].delta_pos.x = 0;
 		sprite->anim[7].frame[0].delta_pos.y = 0;
-		sprite->anim[7].frame[0].delay = 0;
+		sprite->anim[7].frame[0].delay = 1;
 		sprite->anim[7].frame[0].h_flip = 0;
 
 		sprite->anim[7].frame[1].anim_index = 5;
 		sprite->anim[7].frame[1].frame_index = 1;
 		sprite->anim[7].frame[1].delta_pos.x = 0;
-		sprite->anim[7].frame[1].delta_pos.y = 0;
-		sprite->anim[7].frame[1].delay = 0;
+		sprite->anim[7].frame[1].delta_pos.y = 4;
+		sprite->anim[7].frame[1].delay = 1;
 		sprite->anim[7].frame[1].h_flip = 0;
 
 		sprite->anim[7].frame[2].anim_index = 5;
 		sprite->anim[7].frame[2].frame_index = 2;
 		sprite->anim[7].frame[2].delta_pos.x = 0;
-		sprite->anim[7].frame[2].delta_pos.y = 0;
-		sprite->anim[7].frame[2].delay = 0;
+		sprite->anim[7].frame[2].delta_pos.y = 2;
+		sprite->anim[7].frame[2].delay = 1;
 		sprite->anim[7].frame[2].h_flip = 0;
 
 		sprite->anim[7].frame[3].anim_index = 5;
 		sprite->anim[7].frame[3].frame_index = 3;
 		sprite->anim[7].frame[3].delta_pos.x = 0;
-		sprite->anim[7].frame[3].delta_pos.y = 0;
-		sprite->anim[7].frame[3].delay = 0;
+		sprite->anim[7].frame[3].delta_pos.y = 2;
+		sprite->anim[7].frame[3].delay = 1;
 		sprite->anim[7].frame[3].h_flip = 0;
 
 		sprite->anim[7].frame[4].anim_index = 5;
 		sprite->anim[7].frame[4].frame_index = 2;
 		sprite->anim[7].frame[4].delta_pos.x = 0;
-		sprite->anim[7].frame[4].delta_pos.y = 0;
-		sprite->anim[7].frame[4].delay = 0;
+		sprite->anim[7].frame[4].delta_pos.y = 2;
+		sprite->anim[7].frame[4].delay = 1;
 		sprite->anim[7].frame[4].h_flip = 0;
 
 		sprite->anim[7].frame[5].anim_index = 5;
 		sprite->anim[7].frame[5].frame_index = 3;
 		sprite->anim[7].frame[5].delta_pos.x = 0;
-		sprite->anim[7].frame[5].delta_pos.y = 0;
-		sprite->anim[7].frame[5].delay = 0;
+		sprite->anim[7].frame[5].delta_pos.y = 2;
+		sprite->anim[7].frame[5].delay = 1;
 		sprite->anim[7].frame[5].h_flip = 1;
 
 		sprite->anim[7].frame[6].anim_index = 8;
 		sprite->anim[7].frame[6].frame_index = 0;
 		sprite->anim[7].frame[6].delta_pos.x = 0;
-		sprite->anim[7].frame[6].delta_pos.y = 0;
-		sprite->anim[7].frame[6].delay = 0;
+		sprite->anim[7].frame[6].delta_pos.y = 6;
+		sprite->anim[7].frame[6].delay = 2;
 		sprite->anim[7].frame[6].h_flip = 0;
 
 		sprite->anim[7].frame[7].anim_index = 8;
 		sprite->anim[7].frame[7].frame_index = 1;
 		sprite->anim[7].frame[7].delta_pos.x = 0;
-		sprite->anim[7].frame[7].delta_pos.y = 0;
-		sprite->anim[7].frame[7].delay = 0;
+		sprite->anim[7].frame[7].delta_pos.y = 1;
+		sprite->anim[7].frame[7].delay = 2;
 		sprite->anim[7].frame[7].h_flip = 0;
 
 		sprite->anim[7].frame[8].anim_index = 8;
 		sprite->anim[7].frame[8].frame_index = 2;
 		sprite->anim[7].frame[8].delta_pos.x = 0;
-		sprite->anim[7].frame[8].delta_pos.y = 0;
-		sprite->anim[7].frame[8].delay = 0;
+		sprite->anim[7].frame[8].delta_pos.y = 1;
+		sprite->anim[7].frame[8].delay = 2;
 		sprite->anim[7].frame[8].h_flip = 0;
 
 		sprite->anim[7].frame[9].anim_index = 11;
 		sprite->anim[7].frame[9].frame_index = 0;
-		sprite->anim[7].frame[9].delta_pos.x = 0;
-		sprite->anim[7].frame[9].delta_pos.y = 0;
-		sprite->anim[7].frame[9].delay = 0;
+		sprite->anim[7].frame[9].delta_pos.x = -1;
+		sprite->anim[7].frame[9].delta_pos.y = 1;
+		sprite->anim[7].frame[9].delay = 2;
 		sprite->anim[7].frame[9].h_flip = 0;
 
 		sprite->anim[7].frame[10].anim_index = 11;
 		sprite->anim[7].frame[10].frame_index = 1;
-		sprite->anim[7].frame[10].delta_pos.x = 0;
-		sprite->anim[7].frame[10].delta_pos.y = 0;
-		sprite->anim[7].frame[10].delay = 0;
+		sprite->anim[7].frame[10].delta_pos.x = -1;
+		sprite->anim[7].frame[10].delta_pos.y = 2;
+		sprite->anim[7].frame[10].delay = 2;
 		sprite->anim[7].frame[10].h_flip = 0;
 
 		sprite->anim[7].frame[11].anim_index = 12;
 		sprite->anim[7].frame[11].frame_index = 2;
-		sprite->anim[7].frame[11].delta_pos.x = 0;
+		sprite->anim[7].frame[11].delta_pos.x = -1;
 		sprite->anim[7].frame[11].delta_pos.y = 0;
-		sprite->anim[7].frame[11].delay = 0;
+		sprite->anim[7].frame[11].delay = 4;
 		sprite->anim[7].frame[11].h_flip = 0;
 	//*
 	///fall from front
@@ -299,84 +312,84 @@ void	player_sprite_create(t_player *player, SpriteDefinition *sprite_def, u16 ti
 		sprite->anim[8].frame[0].frame_index = 0;
 		sprite->anim[8].frame[0].delta_pos.x = 0;
 		sprite->anim[8].frame[0].delta_pos.y = 0;
-		sprite->anim[8].frame[0].delay = 0;
+		sprite->anim[8].frame[0].delay = 1;
 		sprite->anim[8].frame[0].h_flip = 0;
 
 		sprite->anim[8].frame[1].anim_index = 6;
 		sprite->anim[8].frame[1].frame_index = 0;
 		sprite->anim[8].frame[1].delta_pos.x = 0;
 		sprite->anim[8].frame[1].delta_pos.y = 0;
-		sprite->anim[8].frame[1].delay = 0;
+		sprite->anim[8].frame[1].delay = 1;
 		sprite->anim[8].frame[1].h_flip = 1;
 
 		sprite->anim[8].frame[2].anim_index = 6;
 		sprite->anim[8].frame[2].frame_index = 1;
 		sprite->anim[8].frame[2].delta_pos.x = 0;
 		sprite->anim[8].frame[2].delta_pos.y = 0;
-		sprite->anim[8].frame[2].delay = 0;
+		sprite->anim[8].frame[2].delay = 1;
 		sprite->anim[8].frame[2].h_flip = 0;
 
 		sprite->anim[8].frame[3].anim_index = 6;
 		sprite->anim[8].frame[3].frame_index = 2;
 		sprite->anim[8].frame[3].delta_pos.x = 0;
 		sprite->anim[8].frame[3].delta_pos.y = 0;
-		sprite->anim[8].frame[3].delay = 0;
+		sprite->anim[8].frame[3].delay = 1;
 		sprite->anim[8].frame[3].h_flip = 0;
 
 		sprite->anim[8].frame[4].anim_index = 6;
 		sprite->anim[8].frame[4].frame_index = 1;
 		sprite->anim[8].frame[4].delta_pos.x = 0;
 		sprite->anim[8].frame[4].delta_pos.y = 0;
-		sprite->anim[8].frame[4].delay = 0;
+		sprite->anim[8].frame[4].delay = 1;
 		sprite->anim[8].frame[4].h_flip = 0;
 
 		sprite->anim[8].frame[5].anim_index = 6;
 		sprite->anim[8].frame[5].frame_index = 2;
 		sprite->anim[8].frame[5].delta_pos.x = 0;
 		sprite->anim[8].frame[5].delta_pos.y = 0;
-		sprite->anim[8].frame[5].delay = 0;
+		sprite->anim[8].frame[5].delay = 1;
 		sprite->anim[8].frame[5].h_flip = 1;
 
 		sprite->anim[8].frame[6].anim_index = 9;
 		sprite->anim[8].frame[6].frame_index = 0;
 		sprite->anim[8].frame[6].delta_pos.x = 0;
-		sprite->anim[8].frame[6].delta_pos.y = 0;
-		sprite->anim[8].frame[6].delay = 0;
+		sprite->anim[8].frame[6].delta_pos.y = 5;
+		sprite->anim[8].frame[6].delay = 2;
 		sprite->anim[8].frame[6].h_flip = 0;
 
 		sprite->anim[8].frame[7].anim_index = 9;
 		sprite->anim[8].frame[7].frame_index = 1;
 		sprite->anim[8].frame[7].delta_pos.x = 0;
-		sprite->anim[8].frame[7].delta_pos.y = 0;
-		sprite->anim[8].frame[7].delay = 0;
+		sprite->anim[8].frame[7].delta_pos.y = 1;
+		sprite->anim[8].frame[7].delay = 2;
 		sprite->anim[8].frame[7].h_flip = 0;
 
 		sprite->anim[8].frame[8].anim_index = 9;
 		sprite->anim[8].frame[8].frame_index = 2;
 		sprite->anim[8].frame[8].delta_pos.x = 0;
-		sprite->anim[8].frame[8].delta_pos.y = 0;
-		sprite->anim[8].frame[8].delay = 0;
+		sprite->anim[8].frame[8].delta_pos.y = 1;
+		sprite->anim[8].frame[8].delay = 2;
 		sprite->anim[8].frame[8].h_flip = 0;
 
 		sprite->anim[8].frame[9].anim_index = 11;
 		sprite->anim[8].frame[9].frame_index = 0;
-		sprite->anim[8].frame[9].delta_pos.x = 0;
-		sprite->anim[8].frame[9].delta_pos.y = 0;
-		sprite->anim[8].frame[9].delay = 0;
+		sprite->anim[8].frame[9].delta_pos.x = -1;
+		sprite->anim[8].frame[9].delta_pos.y = 1;
+		sprite->anim[8].frame[9].delay = 2;
 		sprite->anim[8].frame[9].h_flip = 0;
 
 		sprite->anim[8].frame[10].anim_index = 11;
 		sprite->anim[8].frame[10].frame_index = 1;
-		sprite->anim[8].frame[10].delta_pos.x = 0;
-		sprite->anim[8].frame[10].delta_pos.y = 0;
-		sprite->anim[8].frame[10].delay = 0;
+		sprite->anim[8].frame[10].delta_pos.x = -1;
+		sprite->anim[8].frame[10].delta_pos.y = 2;
+		sprite->anim[8].frame[10].delay = 2;
 		sprite->anim[8].frame[10].h_flip = 0;
 
 		sprite->anim[8].frame[11].anim_index = 12;
 		sprite->anim[8].frame[11].frame_index = 2;
-		sprite->anim[8].frame[11].delta_pos.x = 0;
-		sprite->anim[8].frame[11].delta_pos.y = 0;
-		sprite->anim[8].frame[11].delay = 0;
+		sprite->anim[8].frame[11].delta_pos.x = -1;
+		sprite->anim[8].frame[11].delta_pos.y = 1;
+		sprite->anim[8].frame[11].delay = 4;
 		sprite->anim[8].frame[11].h_flip = 0;
 
 	///fall from right
@@ -386,85 +399,84 @@ void	player_sprite_create(t_player *player, SpriteDefinition *sprite_def, u16 ti
 		sprite->anim[9].frame[0].frame_index = 0;
 		sprite->anim[9].frame[0].delta_pos.x = 0;
 		sprite->anim[9].frame[0].delta_pos.y = 0;
-		sprite->anim[9].frame[0].delay = 0;
+		sprite->anim[9].frame[0].delay = 1;
 		sprite->anim[9].frame[0].h_flip = 0;
 
 		sprite->anim[9].frame[1].anim_index = 7;
 		sprite->anim[9].frame[1].frame_index = 1;
 		sprite->anim[9].frame[1].delta_pos.x = 0;
 		sprite->anim[9].frame[1].delta_pos.y = 0;
-		sprite->anim[9].frame[1].delay = 0;
+		sprite->anim[9].frame[1].delay = 1;
 		sprite->anim[9].frame[1].h_flip = 0;
 
 		sprite->anim[9].frame[2].anim_index = 7;
 		sprite->anim[9].frame[2].frame_index = 2;
 		sprite->anim[9].frame[2].delta_pos.x = 0;
 		sprite->anim[9].frame[2].delta_pos.y = 0;
-		sprite->anim[9].frame[2].delay = 0;
+		sprite->anim[9].frame[2].delay = 1;
 		sprite->anim[9].frame[2].h_flip = 0;
 
 		sprite->anim[9].frame[3].anim_index = 7;
 		sprite->anim[9].frame[3].frame_index = 3;
 		sprite->anim[9].frame[3].delta_pos.x = 0;
-		sprite->anim[9].frame[3].delta_pos.y = 0;
-		sprite->anim[9].frame[3].delay = 0;
+		sprite->anim[9].frame[3].delta_pos.y = 2;
+		sprite->anim[9].frame[3].delay = 1;
 		sprite->anim[9].frame[3].h_flip = 0;
 
 		sprite->anim[9].frame[4].anim_index = 7;
 		sprite->anim[9].frame[4].frame_index = 4;
 		sprite->anim[9].frame[4].delta_pos.x = 0;
-		sprite->anim[9].frame[4].delta_pos.y = 0;
-		sprite->anim[9].frame[4].delay = 0;
+		sprite->anim[9].frame[4].delta_pos.y = 1;
+		sprite->anim[9].frame[4].delay = 1;
 		sprite->anim[9].frame[4].h_flip = 0;
 
 		sprite->anim[9].frame[5].anim_index = 7;
 		sprite->anim[9].frame[5].frame_index = 5;
 		sprite->anim[9].frame[5].delta_pos.x = 0;
-		sprite->anim[9].frame[5].delta_pos.y = 0;
-		sprite->anim[9].frame[5].delay = 0;
+		sprite->anim[9].frame[5].delta_pos.y = 1;
+		sprite->anim[9].frame[5].delay = 1;
 		sprite->anim[9].frame[5].h_flip = 0;
 
 		sprite->anim[9].frame[6].anim_index = 10;
 		sprite->anim[9].frame[6].frame_index = 0;
 		sprite->anim[9].frame[6].delta_pos.x = 0;
 		sprite->anim[9].frame[6].delta_pos.y = 0;
-		sprite->anim[9].frame[6].delay = 0;
+		sprite->anim[9].frame[6].delay = 2;
 		sprite->anim[9].frame[6].h_flip = 0;
 
 		sprite->anim[9].frame[7].anim_index = 10;
 		sprite->anim[9].frame[7].frame_index = 1;
 		sprite->anim[9].frame[7].delta_pos.x = 0;
-		sprite->anim[9].frame[7].delta_pos.y = 0;
-		sprite->anim[9].frame[7].delay = 0;
+		sprite->anim[9].frame[7].delta_pos.y = 3;
+		sprite->anim[9].frame[7].delay = 2;
 		sprite->anim[9].frame[7].h_flip = 0;
 
 		sprite->anim[9].frame[8].anim_index = 10;
 		sprite->anim[9].frame[8].frame_index = 2;
 		sprite->anim[9].frame[8].delta_pos.x = 0;
-		sprite->anim[9].frame[8].delta_pos.y = 0;
-		sprite->anim[9].frame[8].delay = 0;
+		sprite->anim[9].frame[8].delta_pos.y = 3;
+		sprite->anim[9].frame[8].delay = 2;
 		sprite->anim[9].frame[8].h_flip = 0;
 
 		sprite->anim[9].frame[9].anim_index = 12;
 		sprite->anim[9].frame[9].frame_index = 0;
 		sprite->anim[9].frame[9].delta_pos.x = 0;
-		sprite->anim[9].frame[9].delta_pos.y = 0;
-		sprite->anim[9].frame[9].delay = 0;
+		sprite->anim[9].frame[9].delta_pos.y = 3;
+		sprite->anim[9].frame[9].delay = 2;
 		sprite->anim[9].frame[9].h_flip = 0;
 
 		sprite->anim[9].frame[10].anim_index = 12;
 		sprite->anim[9].frame[10].frame_index = 1;
-		sprite->anim[9].frame[10].delta_pos.x = 0;
-		sprite->anim[9].frame[10].delta_pos.y = 0;
-		sprite->anim[9].frame[10].delay = 0;
+		sprite->anim[9].frame[10].delta_pos.x = 1;
+		sprite->anim[9].frame[10].delta_pos.y = 4;
+		sprite->anim[9].frame[10].delay = 2;
 		sprite->anim[9].frame[10].h_flip = 0;
 
 		sprite->anim[9].frame[11].anim_index = 12;
 		sprite->anim[9].frame[11].frame_index = 2;
 		sprite->anim[9].frame[11].delta_pos.x = 0;
-		sprite->anim[9].frame[11].delta_pos.y = 0
-		;
-		sprite->anim[9].frame[11].delay = 0;
+		sprite->anim[9].frame[11].delta_pos.y = 2;
+		sprite->anim[9].frame[11].delay = 4;
 		sprite->anim[9].frame[11].h_flip = 0;
 }
 

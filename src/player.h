@@ -4,12 +4,12 @@
 ///перечисление намерений player
 typedef enum
 {
-	pe_to_top	= 1,
-	pe_to_down	= 2,
-	pe_to_left	= 3,
-	pe_to_right	= 4,
-	pe_to_fall	= 5
-}				p_event;
+	pi_to_top	= 1,
+	pi_to_down	= 2,
+	pi_to_left	= 3,
+	pi_to_right	= 4,
+	pi_to_fall	= 5
+}				p_intent;
 
 ///перечисление состояний player
 typedef enum
@@ -37,19 +37,28 @@ typedef struct
 	u32			score;
 }				t_score;
 
-///структура player (позиция, направление, рейтинг, спрайт, палитра, индекс палитры,
-///					 состояние, намерение, задержка кадра(х/50 или х/60 секунды))
 typedef struct
 {
 	Vect2D_s16	pos;
 	Vect2D_s16	direct;
+	Vect2D_u16	map_pos;
+	u8			link;
+	u16			priority;
+}	t_object;
+
+///структура player (позиция, направление, рейтинг, спрайт, палитра, индекс палитры,
+///					 состояние, намерение, задержка кадра(х/50 или х/60 секунды))
+typedef struct
+{
+	t_object	object;
 	t_score		score;
 	t_sprite	*sprite;
 	const u16	*palette;
 	u16			num_pal;
 	p_state		state;
-	p_event		event;
+	p_intent	intent;
 	u8			delay_frame;
+
 }				t_player;
 
 #endif // PLAYER_H_INCLUDED

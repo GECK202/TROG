@@ -12,6 +12,7 @@ typedef enum
 ///структура врага (позиция, направление, тип, спрайт, палитра, номер палитры, состояние)
 typedef struct
 {
+	t_object			object;
 	Vect2D_s16			pos;
 	Vect2D_s16			direct;
 	u8					type;

@@ -36,6 +36,8 @@ typedef struct
 	u8					cur_anim;
 	u8					i_frame;
 	u8					cur_frame;
+	u16					index;
+
 }						t_sprite;
 
 #endif // SPRITE_H_INCLUDED
