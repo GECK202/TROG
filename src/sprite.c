@@ -75,8 +75,8 @@ void	player_sprite_draw(t_player *player)
 	VDP_setSpriteFull(player->object.priority, posx, posy, SPRITE_SIZE(s->width, s->height), TILE_ATTR_FULL(s->pal_index, 1, 0, s->cur_flip, s->tile_index), player->object.link);
 	//VDP_setSpritePosition(player->index*2, posx, posy - (8 * s->height));
 	//VDP_updateSprites(1, 0);player->object.prioritys->index
-	if (s->index == 0)
-		{PRINT_INFO}
+	//if (s->index == 0)
+		//{PRINT_INFO}
 }
 
 ///инициализация списка объектов - спрайтов

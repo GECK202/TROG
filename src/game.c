@@ -32,19 +32,23 @@ void	dummy(void)
 	u16	joy_state;
 	u16 palette[64];
 
-	load_map(1);
-
+	load_map(9);
+	VDP_setBackgroundColor(14);
 	VDP_setPalette(PAL3, hero_sprite.palette->data);
 
 	VDP_loadTileData(fon_tile, TILE_USERINDEX+8, 1, 1);
-	VDP_drawImage(PLAN_B, &pole1_img, 0, 0);
+	//VDP_drawImage(PLAN_B, &pole1_img, 0, 0);
+	draw_map();
 	VDP_loadFont(&font_rus, 1);
 
 	VDP_setTextPlan(PLAN_A);
-	VDP_setTextPalette(PAL2);
-	VDP_setPaletteColor(33, 0xEEE);
-	VDP_setPaletteColor(47, 0xEEE);
-	VDP_setPaletteColor(46, 0x666);
+	VDP_setTextPalette(PAL0);
+
+
+	//VDP_setPaletteColor(33, 0xE00);
+	//VDP_setPaletteColor(34, 0x000);
+	//VDP_setPaletteColor(15, 0xEEE);
+
 
 	//memcpy(&palette[0], pole1_img.palette->data, 16 * 2);
     //memcpy(&palette[0], hero_sprite.palette->data, 16 * 2);
@@ -54,7 +58,7 @@ void	dummy(void)
     //VDP_setPaletteColors(0, palette, 64);
     //VDP_fadeIn(0, (4 * 16) - 1, palette, 20, FALSE);
 
-	VDP_setBackgroundColor(46);
+
 	//DRAW_FON
 
 	JOY_init();

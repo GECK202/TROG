@@ -37,14 +37,7 @@ typedef struct
 	u32			score;
 }				t_score;
 
-typedef struct
-{
-	Vect2D_s16	pos;
-	Vect2D_s16	direct;
-	Vect2D_u16	map_pos;
-	u8			link;
-	u16			priority;
-}	t_object;
+
 
 ///структура player (позиция, направление, рейтинг, спрайт, палитра, индекс палитры,
 ///					 состояние, намерение, задержка кадра(х/50 или х/60 секунды))
